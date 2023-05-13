@@ -24,6 +24,7 @@ foreach ($items as $item) {
     }
     $groupedItems[$id][] = $item;
 }
+ksort($groupedItems);
 ?>
 
 <!DOCTYPE html>
