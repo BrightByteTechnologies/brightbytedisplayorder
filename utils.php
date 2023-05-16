@@ -88,7 +88,7 @@ function generateOrders()
 
     $restaurantId = $data['RESTAURANT']['id'];
     $API_KEY = $data['API'][6]['key'];
-    $ch = curl_init("localhost:3000/orders/unfinished?restaurant_id=" . $restaurantId);
+    $ch = curl_init("api.brightbytetechnologies.de/orders/unfinished?restaurant_id=" . $restaurantId);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
     curl_setopt($ch, CURLOPT_HTTPHEADER, array('api-key: ' . $API_KEY));
@@ -97,7 +97,7 @@ function generateOrders()
 
     curl_close($ch);
 
-    if ($response === false) {
+    if ($response !== 200) {
         return null; // API request failed
     }
 
@@ -135,7 +135,7 @@ function markAsFinished() {
         $jsonData = json_encode($data);
     
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'http://localhost:3000/orders/finish'); // Add 'http://' before the localhost URL
+        curl_setopt($ch, CURLOPT_URL, 'api.brightbytetechnologies.de/orders/finish'); // Add 'http://' before the localhost URL
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('api-key: ' . $API_KEY, 'Content-Type: application/json'));
