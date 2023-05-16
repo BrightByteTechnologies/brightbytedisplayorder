@@ -19,17 +19,7 @@ fetch('config.json')
   });
 
 $(document).ready(function () {
-  $.ajax({
-    url: 'utils.php',
-    type: 'POST',
-    data: { functionName: 'getOrders',},
-    success: function (data) {
-      $('.container').html(data);
-    },
-    error: function () {
-      console.log('Error occurred while fetching orders.');
-    }
-  });
+  updateOrders();
   setInterval(function () {
     $.ajax({
       url: 'utils.php',
@@ -44,6 +34,20 @@ $(document).ready(function () {
     });
   }, 60000); // Refresh every 60 seconds
 });
+
+function updateOrders() {  
+  $.ajax({
+  url: 'utils.php',
+  type: 'POST',
+  data: { functionName: 'getOrders',},
+  success: function (data) {
+    $('.container').html(data);
+  },
+  error: function () {
+    console.log('Error occurred while fetching orders.');
+  }
+});
+}
 
 let pin = '';
 function showPinDisplay() {
@@ -199,8 +203,7 @@ function editOrder() {
   markDoneButton.addEventListener('click', function() {
     var orderId = orderIdInput.value;
     if (orderId.trim() !== '') {
-      // Implement the logic to mark the order as done here
-      createNotification('Bestellung mit der ID: ' + orderId + ' als erledigt markiert!', "green");
+      markAsFinished(orderId);
     } else {
       createNotification("Bitte gebe eine richtige Bestell-ID ein!", "red");
     }
@@ -214,6 +217,32 @@ function editOrder() {
 
   // Append the orderContainer to the body in the HTML
   document.body.appendChild(orderEditContainer);
+}
+
+function markAsFinished(orderId) {
+  jQuery.ajax({
+    type: "POST",
+    url: 'utils.php',
+    data: { functionName:'markAsFinished', orderId: orderId },
+    success: function (response) {
+      try {
+        responseData = JSON.parse(response);
+        if (responseData.status == 200) {
+          createNotification("Bestellung wurde erfolgreich abgeschlossen!", "green");
+          closeElement();
+          updateOrders();
+        } else {
+          createNotification("Es ist ein Fehler aufgetreten!", "red");
+        }
+      } catch (error) {
+        console.error("Couldn't parse response!");
+        console.error(response);
+      }
+    },
+    error: function (error) {
+      console.error('Error occurred during markAsFinished:', error);
+    }
+  });
 }
 
 function closeElement() {

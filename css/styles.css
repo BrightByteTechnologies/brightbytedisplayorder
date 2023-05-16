@@ -46,6 +46,61 @@ body {
     justify-content: center;
 }
 
+.error-message {
+    background-color: white;
+    border-color: ghostwhite;
+    color: #a94442;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.error-message:before {
+    content: "!";
+    font-size: 60px;
+    font-weight: bold;
+    color: #a94442;
+    background-color: gainsboro;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.reload-button {
+    background-color: #4CAF50;
+    /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.reload-button:hover {
+    background-color: #2d6930;
+}
+
+.reload-button:active {
+    background-color: #1e4620;
+}
+
 .order {
     width: 350px;
     background-color: #fff;

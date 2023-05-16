@@ -1,7 +1,4 @@
 <?php
-
-
-
 if (isset($_POST['functionName'])) {
     switch ($_POST['functionName']) {
         case 'checkPin':
@@ -9,6 +6,9 @@ if (isset($_POST['functionName'])) {
             break;
         case 'getOrders':
             echo getOrders();
+            break;
+        case 'markAsFinished':
+            echo markAsFinished();
             break;
         default:
             # code...
@@ -47,6 +47,15 @@ function checkPin()
 function getOrders()
 {
     $groupedItems = generateOrders();
+
+    if ($groupedItems === null) {
+        echo '<div class="error-message">';
+        echo '<h1> Sorry something went wrong</h1>';
+        echo '<h4>We are currently experiencing technical difficulties. Please try again later.</h4>';
+        echo '<button class="reload-button" onclick="location.reload()">Reload</button>';
+        echo '</div>';
+        return;
+    }
 
     foreach ($groupedItems as $id => $itemsWithSameId) {
         echo '<div class="order">';
@@ -88,6 +97,10 @@ function generateOrders()
 
     curl_close($ch);
 
+    if ($response === false) {
+        return null; // API request failed
+    }
+
     $items = json_decode($response, true);
 
     // Group items by ID
@@ -103,4 +116,52 @@ function generateOrders()
 
     return $groupedItems;
 }
+
+function markAsFinished() {
+    $orderId = $_POST["orderId"];
+
+    if (isset($orderId)) {
+        $config = file_get_contents('config.json');
+        $data = json_decode($config, true);
+    
+        $restaurantId = $data['RESTAURANT']['id'];
+        $API_KEY = $data['API'][7]['key'];
+
+        $data = array(
+            'restaurant_id' => $restaurantId,
+            'order_id' => $orderId
+        );
+    
+        $jsonData = json_encode($data);
+    
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'http://localhost:3000/orders/finish'); // Add 'http://' before the localhost URL
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('api-key: ' . $API_KEY, 'Content-Type: application/json'));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE); // Get the HTTP response code
+        curl_close($ch);
+        
+        if ($httpCode == 200) { // Check the HTTP response code
+            $data = array(
+                'status' => 200,
+                'message' => 'OK'
+            );
+            return json_encode($data);
+        } else {
+            $data = json_decode($response, true);
+            return json_encode($data);
+        }
+        
+    } else {
+        $data = array(
+          'status' => 400,
+          'message' => 'Order-ID not found!'
+        );
+        return json_encode($data);
+    }
+}
+
 ?>
