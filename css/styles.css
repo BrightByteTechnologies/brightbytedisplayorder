@@ -5,6 +5,41 @@ body {
     background-color: darkgray;
 }
 
+.notification {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    z-index: 999;
+}
+
+.swipeup {
+    animation: swipeup .5s ease;
+}
+
+@keyframes swipeup {
+    from {
+        top: 22%;
+    }
+
+    to {
+        top: 20%;
+    }
+}
+
+#hidden-button {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    opacity: 0;
+}
+
 .container {
     display: flex;
     flex-wrap: wrap;
@@ -93,4 +128,193 @@ body {
 
 .total-amount {
     font-size: 20px;
+}
+
+#pin-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    background-color: rgba(66, 66, 66, 0.5);
+}
+
+#pin-container,
+#order-edit-container {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: white;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 200%;
+    border-radius: 4px;
+    z-index: 999;
+}
+
+#order-edit-container {
+    padding: 20px;
+}
+
+.pin-content {
+    max-width: 400px;
+    width: 100%;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+#pin-display {
+    margin-bottom: 20px;
+    height: 50px;
+    width: 90%;
+    font-size: xxx-large;
+}
+
+#number-pad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.number {
+    border: 1px solid #ccc;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#zero-number {
+    grid-column: 2 / 3;
+    /* Specify the grid column for the "0" button */
+}
+
+.number:hover {
+    background-color: #eee;
+}
+
+.clear-button,
+.enter-button {
+    height: 65px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.clear-button {
+    background-color: #ff0000;
+    color: #fff;
+}
+
+.clear-button:hover {
+    background-color: #cc0000;
+}
+
+.enter-button {
+    background-color: #00ff00;
+    color: #fff;
+}
+
+.enter-button:hover {
+    background-color: #00cc00;
+}
+
+.order-input {
+    margin-bottom: 20px;
+    height: 50px;
+    width: 90%;
+    font-size: x-large;
+}
+
+/* Responsive Design */
+
+@media only screen and (max-width: 768px) {
+    .order {
+        width: 100%;
+    }
+
+    .pin-content {
+        max-width: 300px;
+    }
+
+    #number-pad {
+        max-width: 180px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    .order {
+        margin: 5px;
+    }
+
+    .order-header {
+        font-size: 18px;
+    }
+
+    .order-body {
+        padding: 10px;
+        min-height: 150px;
+    }
+
+    .order-bottom {
+        padding: 10px;
+    }
+
+    .order-id {
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+
+    .table-number {
+        font-size: 12px;
+    }
+
+    .item {
+        font-size: 14px;
+    }
+
+    .item-name {
+        flex: 2;
+    }
+
+    .item-description {
+        flex: 3;
+        font-size: 12px;
+    }
+
+    .item-price {
+        font-size: 14px;
+        margin-left: 5px;
+    }
+
+    .item-amount {
+        font-size: 12px;
+        margin-left: 5px;
+    }
+
+    .total-label {
+        font-size: 14px;
+    }
+
+    .total-amount {
+        font-size: 18px;
+    }
+
+    .pin-content {
+        max-width: 250px;
+    }
+
+    #number-pad {
+        max-width: 160px;
+    }
 }
