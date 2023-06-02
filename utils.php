@@ -22,10 +22,14 @@ if (isset($_POST['functionName'])) {
 
 function checkPin()
 {
+    $config = file_get_contents('config.json');
+    $data = json_decode($config, true);
+
+    $order_pin = $data['RESTAURANT']['order_pin'];
     $pin = $_POST['pin'];
 
     if (isset($pin)) {
-        if ($pin === '123') { // Make sure to compare pin as a string
+        if ($pin === $order_pin) { // Make sure to compare pin as a string
             $data = array(
                 'status' => 200,
                 'message' => 'OK'
@@ -51,9 +55,12 @@ function checkLoginPin()
 {
     session_start();
     $pin = $_POST['loginPin'];
+    $config = file_get_contents('config.json');
+    $data = json_decode($config, true);
 
+    $login_pin = $data['RESTAURANT']['login_pin'];
     if (isset($pin)) {
-        if ($pin === '2004') { // Make sure to compare pin as a string
+        if ($pin === $login_pin) { // Make sure to compare pin as a string
             $_SESSION["CORRECT_LOGIN"] = true;
             $data = array(
                 'status' => 200,
