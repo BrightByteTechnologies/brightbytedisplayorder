@@ -134,10 +134,10 @@ function generateOrders()
     curl_setopt($ch, CURLOPT_HTTPHEADER, array('api-key: ' . $API_KEY));
 
     $response = curl_exec($ch);
-
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE); // Get HTTP status code
     curl_close($ch);
 
-    if ($response !== 200) {
+    if ($httpCode !== 200) {
         return null; // API request failed
     }
 
