@@ -4,6 +4,9 @@ if (isset($_POST['functionName'])) {
         case 'checkPin':
             echo checkPin();
             break;
+        case 'checkLoginPin':
+            echo checkLoginPin();
+            break;
         case 'getOrders':
             echo getOrders();
             break;
@@ -33,6 +36,36 @@ function checkPin()
                 'status' => 400,
                 'message' => 'Pin incorrect'
             );
+            return json_encode($data);
+        }
+    } else {
+        $data = array(
+            'status' => 404,
+            'message' => 'Pin not found!'
+        );
+        return json_encode($data);
+    }
+}
+
+function checkLoginPin()
+{
+    session_start();
+    $pin = $_POST['loginPin'];
+
+    if (isset($pin)) {
+        if ($pin === '2004') { // Make sure to compare pin as a string
+            $_SESSION["CORRECT_LOGIN"] = true;
+            $data = array(
+                'status' => 200,
+                'message' => 'Pin correct'
+            );
+            return json_encode($data);
+        } else {
+            $data = array(
+                'status' => 400,
+                'message' => 'Pin incorrect'
+            );
+            $_SESSION["CORRECT_LOGIN"] = false;
             return json_encode($data);
         }
     } else {
