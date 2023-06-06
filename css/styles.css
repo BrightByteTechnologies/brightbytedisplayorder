@@ -1,16 +1,17 @@
 body {
     font-family: Arial, sans-serif;
+    font-size: 14px;
     margin: 0;
-    padding: 20px;
+    padding: 10px;
     background-color: darkgray;
 }
 
 .notification {
     position: absolute;
-    top: 20%;
+    top: 10%;
     left: 50%;
     transform: translateX(-50%);
-    padding: 10px;
+    padding: 5px;
     background-color: white;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -33,10 +34,10 @@ body {
 
 #hidden-button {
     position: fixed;
-    top: 10px;
-    right: 10px;
-    width: 40px;
-    height: 40px;
+    top: 5px;
+    right: 5px;
+    width: 30px;
+    height: 30px;
     opacity: 0;
 }
 
@@ -50,7 +51,7 @@ body {
     background-color: white;
     border-color: ghostwhite;
     color: #a94442;
-    padding: 15px;
+    padding: 10px;
     margin-bottom: 20px;
     border-radius: 10px;
     display: flex;
@@ -58,24 +59,25 @@ body {
     align-items: center;
     flex-direction: column;
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
+    font-size: 16px;
 }
 
 .error-message:before {
     content: "!";
-    font-size: 60px;
+    font-size: 40px;
     font-weight: bold;
     color: #a94442;
     background-color: gainsboro;
     border-radius: 50%;
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .reload-button {
@@ -83,12 +85,12 @@ body {
     /* Green */
     border: none;
     color: white;
-    padding: 15px 32px;
+    padding: 10px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
-    margin-top: 20px;
+    font-size: 14px;
+    margin-top: 10px;
     border-radius: 10px;
     cursor: pointer;
 }
@@ -102,9 +104,9 @@ body {
 }
 
 .order {
-    width: 350px;
+    width: 300px;
     background-color: #fff;
-    margin: 10px;
+    margin: 5px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -116,17 +118,17 @@ body {
     border-top-right-radius: 8px;
     text-align: center;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .order-body {
-    padding: 20px;
+    padding: 10px;
     border-bottom: 1px solid #e0e0e0;
-    min-height: 200px;
+    min-height: 120px;
 }
 
 .order-bottom {
-    padding: 20px;
+    padding: 10px;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
     text-align: right;
@@ -134,55 +136,56 @@ body {
 }
 
 .order-id {
-    font-size: 18px;
+    font-size: 14px;
     font-weight: bolder;
     color: black;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .table-number {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: bold;
     color: #666;
     text-align: left;
 }
 
 .item {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     display: flex;
     align-items: center;
-    font-size: 16px;
+    font-size: 12px;
 }
 
 .item-name {
-    flex: 1;
+    flex: 2;
     font-weight: bold;
 }
 
 .item-description {
-    flex: 1;
-    font-size: 14px;
+    flex: 3;
+    font-size: 10px;
     color: #666;
 }
 
 .item-price {
     font-weight: bold;
-    margin-left: 10px;
+    margin-left: 3px;
 }
 
 .item-amount {
-    font-size: 14px;
+    font-size: 10px;
     color: #666;
-    margin-left: 10px;
+    margin-left: 3px;
 }
 
 .total-label {
     font-weight: bold;
     color: black;
+    font-size: 12px;
 }
 
 .total-amount {
-    font-size: 20px;
+    font-size: 16px;
 }
 
 #pin-overlay {
@@ -193,7 +196,7 @@ body {
     width: 100%;
     height: 100%;
     z-index: 99;
-    background-color: rgba(66, 66, 66, 0.5);
+    background-color: rgba(66, 66, 66, 0.7);
 }
 
 #pin-container,
@@ -204,20 +207,21 @@ body {
     text-align: center;
     background-color: white;
     position: absolute;
-    top: 25%;
+    top: 30%;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 200%;
+    font-size: 150%;
+    padding: 10px;
     border-radius: 4px;
     z-index: 999;
 }
 
 #order-edit-container {
-    padding: 20px;
+    padding: 10px;
 }
 
 .pin-content {
-    max-width: 400px;
+    max-width: 250px;
     width: 100%;
     border-radius: 5px;
     padding: 20px;
@@ -225,9 +229,9 @@ body {
 
 #pin-display {
     margin-bottom: 20px;
-    height: 50px;
+    height: 30px;
     width: 90%;
-    font-size: xxx-large;
+    font-size: large;
 }
 
 #number-pad {
@@ -235,13 +239,13 @@ body {
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 10px;
     width: 100%;
-    max-width: 400px;
+    max-width: 120px;
     margin: 0 auto;
 }
 
 .number {
     border: 1px solid #ccc;
-    padding: 10px;
+    padding: 5px;
     cursor: pointer;
 }
 
@@ -256,10 +260,10 @@ body {
 
 .clear-button,
 .enter-button {
-    height: 65px;
+    height: 40px;
     border: 1px solid #ccc;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 .clear-button {
@@ -282,9 +286,9 @@ body {
 
 .order-input {
     margin-bottom: 20px;
-    height: 50px;
+    height: 30px;
     width: 90%;
-    font-size: x-large;
+    font-size: large;
 }
 
 /* Responsive Design */
@@ -309,67 +313,59 @@ body {
     }
 
     .order {
-        margin: 5px;
-    }
-
-    .order-header {
-        font-size: 18px;
+        width: 100%;
     }
 
     .order-body {
-        padding: 10px;
-        min-height: 150px;
-    }
-
-    .order-bottom {
-        padding: 10px;
+        min-height: 100px;
     }
 
     .order-id {
-        font-size: 16px;
-        margin-bottom: 5px;
+        font-size: 12px;
     }
 
     .table-number {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .item {
-        font-size: 14px;
+        font-size: 10px;
     }
 
     .item-name {
-        flex: 2;
+        font-weight: normal;
     }
 
     .item-description {
-        flex: 3;
-        font-size: 12px;
+        font-size: 8px;
     }
 
     .item-price {
-        font-size: 14px;
-        margin-left: 5px;
+        font-size: 10px;
     }
 
     .item-amount {
-        font-size: 12px;
-        margin-left: 5px;
+        font-size: 8px;
     }
 
     .total-label {
-        font-size: 14px;
+        font-size: 10px;
     }
 
     .total-amount {
-        font-size: 18px;
+        font-size: 14px;
     }
 
-    .pin-content {
-        max-width: 250px;
+    .notification {
+        top: 5%;
     }
 
-    #number-pad {
-        max-width: 160px;
+    .error-message {
+        top: 30%;
+    }
+
+    #pin-container,
+    #order-edit-container {
+        top: 20%;
     }
 }
