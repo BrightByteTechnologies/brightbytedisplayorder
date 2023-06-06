@@ -17,7 +17,6 @@ if (isset($_POST['functionName'])) {
             # code...
             break;
     }
-
 }
 
 function checkPin()
